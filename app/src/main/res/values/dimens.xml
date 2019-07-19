@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dialog相关dimen属性. -->
+    <dimen name="dialog_normal_width">280dp</dimen>
+    <dimen name="dialog_bg_normal_radius">2dp</dimen>
+    <dimen name="radius_k_toast">4dp</dimen>
+    <dimen name="tab_bar_height">50dp</dimen>
+
+    <dimen name="def_image_drawable_radius_2_dp">2dp</dimen>
+    <dimen name="def_image_drawable_radius_4_dp">4dp</dimen>
+    <dimen name="def_image_drawable_radius_6_dp">6dp</dimen>
+</resources>
