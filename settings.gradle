@@ -1,1 +1,2 @@
 include ':app', ':Xml2Json'
+include ':java'
