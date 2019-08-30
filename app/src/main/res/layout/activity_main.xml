@@ -6,6 +6,43 @@
                                                    android:layout_height="match_parent"
                                                    tools:context="com.hhcoco.fastdevlib.MainActivity">
 
+    <EditText
+            android:id="@+id/tv_key"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <ScrollView
+            app:layout_constraintTop_toBottomOf="@+id/tv_key"
+            android:layout_width="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="50dp">
+        <TextView
+                android:id="@+id/tv_result"
+                android:hint="result..."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </ScrollView>
+
+    <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="ADD"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_key"
+            app:layout_constraintRight_toRightOf="parent"/>
+
     <TextView
             android:id="@+id/tv_tips"
             android:layout_width="wrap_content"
@@ -19,19 +56,67 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-    <HorizontalScrollView
+    <TextView
+            android:id="@+id/tv_template"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="Match"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_next"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+            android:id="@+id/tv_find"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="FIND_MOUSE"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_next"
+            app:layout_constraintLeft_toRightOf="@+id/tv_template"/>
+
+    <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="NEXT"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+            android:id="@+id/tv_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="SWITCH"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+    <!--<HorizontalScrollView-->
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
         <ImageView
                 android:id="@+id/img_tips"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:src="@mipmap/tess_test7"
-                android:scaleType="centerCrop"/>
-    </HorizontalScrollView>
+                tools:src="@mipmap/tess_test7"/>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,13 +15,34 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+
+        release {
+            keyAlias 'keystore'
+            keyPassword 'wangliang222'
+            storeFile file('keystore.jks')
+            storePassword 'wangliang111'
+        }
+
+//        config_release {
+//            //加载 keystore配置文件
+//            def keystoreProps = new Properties()
+//            keystoreProps.load(project.rootProject.file('keystore.properties').newDataInputStream())
+//
+//            keyAlias keystoreProps.getProperty("keystore.alias")
+//            keyPassword keystoreProps.getProperty("keystore.password")
+//            storeFile file(keystoreProps.getProperty("keystore.path"))
+//            storePassword keystoreProps.getProperty("keystore.alias_password")
+//        }
+    }
+
     buildTypes {
         release {
             aaptOptions.cruncherEnabled = false
             aaptOptions.useNewCruncher = false
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -48,4 +69,5 @@ dependencies {
     implementation 'com.rmtheis:tess-two:9.0.0'
     implementation 'com.github.yhaolpz:FloatWindow:1.0.9'
     implementation project(path: ':java')
+    implementation "com.google.code.gson:gson:2.8.5"
 }
