@@ -19,6 +19,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
+        <provider
+                android:name="com.hhcoco.fastdevlib.GlobalContextProvider"
+                android:authorities="${applicationId}.cp"
+                android:exported="false"
+                android:multiprocess="true" />
 
         <provider
                 android:name="androidx.core.content.FileProvider"

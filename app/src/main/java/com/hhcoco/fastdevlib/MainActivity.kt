@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private val cachePoint = arrayListOf<MatOfPoint>()
 
-    private var pageIndex = 200
+    private var pageIndex = 50
 
     private var filterPoint: List<MatOfPoint>? = null
 
@@ -93,6 +93,85 @@ class MainActivity : AppCompatActivity() {
         )
 
 //        val bitmapList = arrayListOf(R.mipmap.tess_test4)
+
+        tv_resize.setOnClickListener {
+
+            pageIndex = 50
+
+            var bitmap = BitmapFactory.decodeResource(resources, R.mipmap.tess_test17)
+            val grey = Mat()
+            Utils.bitmapToMat(bitmap, src)
+            cvtColor(src, grey, COLOR_BGR2GRAY) // 灰度化处理
+            threshold(grey, blackwhite, 165.0, 255.0, THRESH_BINARY) // 二值化
+
+            val dilate = Mat()
+            val kernelX1 = getStructuringElement(MORPH_RECT, Size(30.0, 2.0))
+            erode(blackwhite, dilate, kernelX1)
+
+            val points = arrayListOf<MatOfPoint>()
+            findContours(dilate, points, Mat(), RETR_TREE, CHAIN_APPROX_NONE, Point(0.0, 0.0))
+            val maxRect = points.map { boundingRect(it) }.filter {
+                (it.x + it.width / 2) in blackwhite.width() / 2 - it.width / 4 .. blackwhite.width() / 2 + it.width / 4
+                        && it.width in 100 .. 500 && it.width > it.height && it.y > blackwhite.height() - 500
+            }.maxBy { it.area() }
+            val maxMat = Mat(blackwhite, maxRect)
+
+//            val dilate = Mat()
+//            val kernelX1 = getStructuringElement(MORPH_RECT, Size(30.0, 2.0))
+//            dilate(blackwhite, dilate, kernelX1)
+//
+//            val points = arrayListOf<MatOfPoint>()
+//            findContours(dilate, points, Mat(), RETR_EXTERNAL, CHAIN_APPROX_NONE, Point(0.0, 0.0))
+//            val maxRect = points.map { boundingRect(it) }.filter {
+//                (it.x + it.width / 2) in blackwhite.width() / 2 - it.width..blackwhite.width() / 2 + it.width
+//                        && it.width < 500 && it.width > it.height
+//            }.maxBy { it.area() }
+//            val maxMat = Mat(blackwhite, maxRect)
+
+
+//            val max = points.maxBy { boundingRect(it).area() }
+//            val maxRect = boundingRect(max)
+//            val maxMat = Mat(blackwhite, maxRect)
+//
+//            val srcMat = Mat(
+//                maxMat, Rect(
+//                    0, (maxRect.height - (260 / 1011.0) * maxRect.height).toInt(),
+//                    maxRect.width / 2, ((260 / 1011.0) * maxRect.height).toInt()
+//                )
+//            )
+
+//            val srcMat = Mat(
+//                blackwhite, Rect(
+//                    (blackwhite.width() / 2 - 90 * density).toInt(), (statusBarHeight + 40 * density).toInt(),
+//                    (150 * density).toInt(), (50 * density).toInt()
+//                ))
+
+//            filterPoint = points.filter {
+//                val rect = boundingRect(it)
+//                rect.width > 0
+//            }.sortedBy {
+//                boundingRect(it).y
+//            }
+//            filterPoint?.withIndex()?.forEach {
+//                drawContours(
+//                    contour2, filterPoint, it.index, Scalar(
+//                        255 * Random().nextDouble(),
+//                        255 * Random().nextDouble(),
+//                        255 * Random().nextDouble()
+//                    ),
+//                    1
+//                )
+//            }
+
+            val srcBitmap = Bitmap.createBitmap(maxMat.width(), maxMat.height(), Bitmap.Config.RGB_565)
+            Utils.matToBitmap(maxMat, srcBitmap)
+            img_tips.setImageBitmap(srcBitmap)
+
+            val key = tv_key.text.toString()
+            Test.saveBitmap("${key}_${System.currentTimeMillis()}.png", srcBitmap)
+            Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show()
+
+        }
 
         tv_add.setOnClickListener {
             // 获取当前的

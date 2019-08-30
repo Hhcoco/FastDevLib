@@ -81,6 +81,18 @@
             app:layout_constraintLeft_toRightOf="@+id/tv_template"/>
 
     <TextView
+            android:id="@+id/tv_resize"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="RESIZE"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_next"
+            app:layout_constraintLeft_toRightOf="@+id/tv_find"/>
+
+    <TextView
             android:id="@+id/tv_next"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
